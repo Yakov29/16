@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSONPlaceholder API</title>
+</head>
+<body>
+    <h1>Список постов</h1>
+    <ul id="postList"></ul>
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => response.json())
+            .then(posts => {
+                let postList = document.getElementById('postList');
+                posts.forEach(post => {
+                    let listItem = document.createElement('li');
+                    listItem.textContent = `Пост ID: ${post.id}, Пользователь: ${post.userId}, Заголовок: ${post.title}, Текст: ${post.body}`;
+                    postList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Ошибка:', error));
+    </script>
+</body>
+</html>
